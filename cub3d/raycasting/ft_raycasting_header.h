@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:48 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 06:36:50 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 06:42:43 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include"../mlx/mlx.h"
 # include"../ft_mylibft/libft.h"
 
-# define WINDOW_W 1920
-# define WINDOW_H 1080
+# define WINDOW_W 1440
+# define WINDOW_H 900
 
 # define PLAIN_X 0
 # define PLAIN_Y 0.67

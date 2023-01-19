@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:30 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 06:33:50 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 06:42:27 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int	draw_screen(t_map *map, t_mlx *mlx)
 			if (rc.side)
 				rc.color = (rc.color >> 1) & 8355711;
 			rc.tex_pos += rc.tex_step;
-			mlx->buffer[j * WINDOW_W + i] = rc.color;
+			mlx->buffer[j * mlx->size_line / 4 + i] = rc.color;
 		}
 	}
 	mlx_put_image_to_window(mlx->m, mlx->w, mlx->img[ASSET_CNT], 0, 0);
