@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:48 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 06:19:34 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 06:36:50 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,39 @@
 
 # define WINDOW_W 1920
 # define WINDOW_H 1080
+
+# define PLAIN_X 0
+# define PLAIN_Y 0.67
+
+typedef struct s_rc
+{
+	double	camera_x;
+	double	ray_x;
+	double	ray_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	wall_d;
+	double	wall_x;
+	double	tex_step;
+	double	tex_pos;
+	int		tex_x;
+	int		tex_y;
+	int		x;
+	int		y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_h;
+	int		draw_s;
+	int		draw_e;
+	int		tex_id;
+	int		color;
+	double	time;
+	double	old_time;
+}t_rc;
 
 typedef struct s_map
 {
@@ -40,13 +73,13 @@ typedef struct s_mlx
 	void	*w;
 	void	*img[ASSET_CNT + 1];
 	int		*data[ASSET_CNT];
+	int		*buffer;
 	int		img_w;
 	int		img_h;
 	int		bpp;
 	int		size_line;
 	int		endian;
 	int		*tex[ASSET_CNT];
-	int		*buffer;
 }t_mlx;
 
 typedef struct s_param

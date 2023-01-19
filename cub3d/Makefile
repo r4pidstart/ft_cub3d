@@ -6,7 +6,7 @@
 #    By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/31 12:48:31 by tjo               #+#    #+#              #
-#    Updated: 2023/01/20 06:14:30 by tjo              ###   ########.fr        #
+#    Updated: 2023/01/20 06:36:22 by tjo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -g3 -ggdb -fsanitize=address
 LIBFT = ft_mylibft/libft.a
 LIBFT_SRCS = ft_mylibft
 
-MLX = cub3d/mlx/libmlx.dylib
+MLX = libmlx.dylib
 MLX_SRCS = mlx
 
 SRCS = raycasting/ft_raycasting.c ft_main.c
@@ -43,7 +43,7 @@ $(NAME): $(LIBFT) $(MLX) $(addprefix $(SRCS_FOLDER), $(SRCS:.c=.o))
 	cc $(CFLAGS) \
 	-o ./$(NAME) \
 	$(addprefix $(SRCS_FOLDER), $(SRCS)) \
-	-Imlx -L$(MLX_SRCS) -lmlx -framework OpenGL -framework Appkit \
+	-Imlx -L. -lmlx -framework OpenGL -framework Appkit \
 	-L$(LIBFT_SRCS) -lft
 
 $(LIBFT):
@@ -51,6 +51,7 @@ $(LIBFT):
 
 $(MLX):
 	make all -C $(MLX_SRCS)
+	mv mlx/libmlx.dylib ./libmlx.dylib
 
 %.o: %.c
 	cc $(CFLAGS) -c $^ -o $@
@@ -66,11 +67,10 @@ clean:
 	
 fclean: clean
 	rm -rf $(NAME) $(BNAME)
+	rm -rf $(MLX)
 	make fclean -C $(LIBFT_SRCS)
 
 re:
-	make clean -C $(LIBFT_SRCS)
-	make clean -C $(MLX_SRCS)
 	$(MAKE) fclean
 	$(MAKE) all
 

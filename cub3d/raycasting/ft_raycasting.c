@@ -6,53 +6,20 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:30 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 06:21:18 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 06:33:50 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_raycasting_header.h"
 
-#define PLAIN_X 0
-#define PLAIN_Y 0.66
-
-typedef struct s_rc
-{
-	double	camera_x;
-	double	ray_x;
-	double	ray_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	wall_d;
-	double	wall_x;
-	double	tex_step;
-	double	tex_pos;
-	int		tex_x;
-	int		tex_y;
-	int		x;
-	int		y;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	int		line_h;
-	int		draw_s;
-	int		draw_e;
-	int		tex_id;
-	int		color;
-	double	time;
-	double	old_time;
-}t_rc;
-
-double	myabs(double a)
+static double	myabs(double a)
 {
 	if (a < 0)
 		return (-a);
 	return (a);
 }
 
-int	clear_buffer(t_mlx *mlx)
+static int	clear_buffer(t_mlx *mlx)
 {
 	int	i;
 	int	j;
@@ -150,7 +117,7 @@ int	draw_screen(t_map *map, t_mlx *mlx)
 		if ((!rc.side && rc.ray_x > 0) || (rc.side && rc.ray_y < 0))
 			rc.tex_x = mlx->img_w - rc.tex_x - 1;
 
-		// get texture
+		// get texture and draw
 		rc.tex_id = map->map[rc.x][rc.y] - 1;
 		
 		rc.tex_step = 1. * mlx->img_h / rc.line_h;
@@ -163,12 +130,8 @@ int	draw_screen(t_map *map, t_mlx *mlx)
 			rc.color = mlx->tex[rc.tex_id][mlx->img_h * rc.tex_y + rc.tex_x];
 			if (rc.side)
 				rc.color = (rc.color >> 1) & 8355711;
-			// if (rc.side)
-			// 	mlx_pixel_put(mlx->m, mlx->w, i, j, rc.color);
-			// else
-			// 	mlx_pixel_put(mlx->m, mlx->w, i, j, rc.color);
 			rc.tex_pos += rc.tex_step;
-			mlx->buffer[j * WINDOW_W + i * (mlx->bpp / 32)] = rc.color;
+			mlx->buffer[j * WINDOW_W + i] = rc.color;
 		}
 	}
 	mlx_put_image_to_window(mlx->m, mlx->w, mlx->img[ASSET_CNT], 0, 0);
