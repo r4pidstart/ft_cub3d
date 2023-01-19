@@ -6,7 +6,7 @@
 #    By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/31 12:48:31 by tjo               #+#    #+#              #
-#    Updated: 2023/01/20 02:28:25 by tjo              ###   ########.fr        #
+#    Updated: 2023/01/20 06:14:30 by tjo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBFT_SRCS = ft_mylibft
 MLX = cub3d/mlx/libmlx.dylib
 MLX_SRCS = mlx
 
-SRCS = 
+SRCS = raycasting/ft_raycasting.c ft_main.c
 SRCS_FOLDER = 
 
 uname := $(shell uname -p)
@@ -43,7 +43,7 @@ $(NAME): $(LIBFT) $(MLX) $(addprefix $(SRCS_FOLDER), $(SRCS:.c=.o))
 	cc $(CFLAGS) \
 	-o ./$(NAME) \
 	$(addprefix $(SRCS_FOLDER), $(SRCS)) \
-	-Imlx -Lmlx -lmlx -framework OpenGL -framework Appkit \
+	-Imlx -L$(MLX_SRCS) -lmlx -framework OpenGL -framework Appkit \
 	-L$(LIBFT_SRCS) -lft
 
 $(LIBFT):

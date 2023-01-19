@@ -69,7 +69,11 @@
 		"deque": "cpp",
 		"fstream": "cpp",
 		"stack": "cpp",
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"libft.h": "c",
+		"ft_raycasting_header.h": "c",
+		"ft_header.h": "c",
+		"math.h": "c"
 	},
     "search.sortOrder": "type",
     "editor.detectIndentation": false,

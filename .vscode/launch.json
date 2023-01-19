@@ -8,7 +8,7 @@
 			"name": "mandatory",
 			"type": "lldb",
 			"request": "launch",
-			"program": "${workspaceFolder}/test",
+			"program": "${workspaceFolder}/cub3d/cub3d",
 			"args": [""],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
