@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:09 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 15:27:10 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 15:50:53 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_assets(t_mlx *mlx)
 	{
 		"assets/chest.xpm",
 		"assets/wall.xpm",
-		"assets/wall.xpm",
+		"assets/sans.xpm",
 		"assets/wall.xpm",
 		"assets/wall.xpm",
 		"assets/wall.xpm",
@@ -75,12 +75,41 @@ int worldMap[24][24]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-// TODO: add move by wasd and wall collision
+// TODO: wall collision
+int	move_player(int key, t_param *t)
+{
+	const double	move_speed = 0.07;
+
+	if (key == K_W)
+	{
+		t->map->player_x += t->map->dir_x * move_speed;
+		t->map->player_y += t->map->dir_y * move_speed;
+	}
+	else if (key == K_A)
+	{
+		t->map->player_x -= t->map->dir_y * move_speed;
+		t->map->player_y += t->map->dir_x * move_speed;
+	}
+	else if (key == K_S)
+	{
+		t->map->player_x -= t->map->dir_x * move_speed;
+		t->map->player_y -= t->map->dir_y * move_speed;
+	}
+	else if (key == K_D)
+	{
+		t->map->player_x += t->map->dir_y * move_speed;
+		t->map->player_y -= t->map->dir_x * move_speed;
+	}
+	return (0);
+}
+
 int	key_hook(int key, t_param *t)
 {
-	if (key == 124 || key == 123)
+	if (key == K_LEFT || key == K_RIGHT)
 		change_dir(key, t->map, 0.07);
-	else if (key == 53)
+	else if (key == K_W || key == K_A || key == K_S || key == K_D)
+		move_player(key, t);
+	else if (key == K_ESC)
 		exit(0);
 	mlx_clear_window(t->mlx->m, t->mlx->w);
 	looooop(t);
@@ -115,7 +144,7 @@ int	main(void)
 		&mlx.bpp, &mlx.size_line, &mlx.endian);
 	mlx.buffer[1] = (int *)mlx_get_data_addr(mlx.img[ASSET_CNT + 1], \
 		&mlx.bpp, &mlx.size_line, &mlx.endian);
-	// if (!mlx.buffer[1])
+	// if (!mlx.buffer[0] || !mlx.buffer[1])
 	// 	error_handling();
 
 	mlx_mouse_hide();
