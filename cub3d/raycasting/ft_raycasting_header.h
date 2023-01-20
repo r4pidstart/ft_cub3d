@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:48 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 14:50:42 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 15:08:02 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 
 # define WINDOW_W 1440
 # define WINDOW_H 900
+
+enum e_dir
+{
+	K_RIGHT = 124,
+	K_LEFT = 123
+};
 
 typedef struct s_rc
 {
@@ -91,6 +97,7 @@ int		draw_screen(t_map *map, t_mlx *mlx, int img);
 
 /* ft_raycasting_utils.c */
 double	myabs(double a);
+int		change_dir(int key, t_map *map, double rs);
 
 /* ft_raycasting_calc.c */
 void	get_step(t_rc *rc, t_map *map);

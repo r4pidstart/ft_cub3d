@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:30 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 14:46:18 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 15:27:03 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,21 @@ int	draw_screen(t_map *map, t_mlx *mlx, int img)
 int	looooop(t_param *t)
 {
 	static int	img;
+	static int	px = WINDOW_W / 2;
+	static int	x = -1;
+	static int	y = -1;
 
+	mlx_mouse_get_pos(t->mlx->w, &x, &y);
+	if (px > x)
+		change_dir(K_LEFT, t->map, (px - x) * 0.0008);
+	else if (px < x)
+		change_dir(K_RIGHT, t->map, (x - px) * 0.0008);
+	if (!(0 <= x && x <= WINDOW_W))
+	{
+		mlx_mouse_move(t->mlx->w, WINDOW_W / 2, WINDOW_H / 2);
+		x = WINDOW_W / 2;
+	}
+	px = x;
 	img ^= 1;
 	draw_screen(t->map, t->mlx, img);
 	mlx_put_image_to_window(t->mlx->m, t->mlx->w, \
