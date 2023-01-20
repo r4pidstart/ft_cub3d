@@ -6,27 +6,12 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:09 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 05:21:08 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 14:33:20 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_header.h"
 
-int	img_to_texture(int i, t_mlx *mlx)
-{
-	int	x;
-	int	y;
-
-	x = -1;
-	while (++x < mlx->img_h)
-	{
-		y = -1;
-		while (++y < mlx->img_w)
-			mlx->tex[i][mlx->img_w * x + y] \
-				= mlx->data[i][mlx->img_w * x + y];
-	}
-	return (0);
-}
 
 int	get_assets(t_mlx *mlx)
 {
@@ -35,16 +20,29 @@ int	get_assets(t_mlx *mlx)
 	i = -1;
 	// if (!mlx->tex)
 	// 	return (error_handling());
+	char	*assets[ASSET_CNT] =
+	{
+		"assets/chest.xpm",
+		"assets/wall.xpm",
+		"assets/wall.xpm",
+		"assets/wall.xpm",
+		"assets/wall.xpm",
+		"assets/wall.xpm",
+		"assets/wall.xpm",
+		"assets/wall.xpm",
+		"assets/wall.xpm",
+		"assets/wall.xpm"
+	};
 	while (++i < ASSET_CNT)
 	{
 		mlx->img[i] = mlx_xpm_file_to_image(mlx->m, \
-		"assets/chest.xpm", &mlx->img_w, &mlx->img_h);
+		assets[i], &mlx->img_w, &mlx->img_h);
 		mlx->data[i] = (int *)mlx_get_data_addr(mlx->img[i], \
 			&mlx->bpp, &mlx->size_line, &mlx->endian);
 		mlx->tex[i] = malloc(sizeof(int) * (mlx->img_h * mlx->img_w));
-		// if (!mlx->tex)
+		// if (!mlx->tex[i])
 		// 	return (error_handling());
-		img_to_texture(i, mlx);
+		ft_memcpy(mlx->tex[i], mlx->data[i], 4 *  mlx->img_h * mlx->img_w);
 	}
 	return (0);
 }
@@ -84,8 +82,8 @@ int	main(void)
 	t_mlx	mlx;
 
 	param = (t_param){.map = &map, .mlx = &mlx};
-	map = (t_map){.width = 24, .height = 24, .player_x = 22, .player_y = 12, \
-		.dir_x = -1, .dir_y = 0};
+	map = (t_map){.width = 24, .height = 24, .player_x = 21, .player_y = 12, \
+		.dir_x = -1, .dir_y = 0, .plain_x = 0, .plain_y = 0.67};
 		
 	map.map = (int **)malloc(sizeof(int *) * 24);
 	for(int i=0; i<24; i++)
@@ -99,10 +97,16 @@ int	main(void)
 	mlx.w = mlx_new_window(mlx.m, WINDOW_W, WINDOW_H, "cub3d");
 
 	get_assets(&mlx);
-	mlx.img[ASSET_CNT] = mlx_new_image(mlx.m, WINDOW_W, WINDOW_H);
-	mlx.buffer = (int *)mlx_get_data_addr(mlx.img[ASSET_CNT], \
+	mlx.img[ASSET_CNT + 0] = mlx_new_image(mlx.m, WINDOW_W, WINDOW_H);
+	mlx.img[ASSET_CNT + 1] = mlx_new_image(mlx.m, WINDOW_W, WINDOW_H);
+	mlx.buffer[0] = (int *)mlx_get_data_addr(mlx.img[ASSET_CNT + 0], \
 		&mlx.bpp, &mlx.size_line, &mlx.endian);
-	
+	mlx.buffer[1] = (int *)mlx_get_data_addr(mlx.img[ASSET_CNT + 1], \
+		&mlx.bpp, &mlx.size_line, &mlx.endian);
+	// if (!mlx.buffer[1])
+	// 	error_handling();
+
+	// mlx_hook(mlx.w, X_EVENT_KEY_PRESS, 0, )
 	mlx_loop_hook(mlx.m, &main_loop, &param);
 	mlx_loop(mlx.m);
 }

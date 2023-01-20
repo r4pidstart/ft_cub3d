@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:48 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 06:42:43 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 14:29:35 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 
 # define WINDOW_W 1440
 # define WINDOW_H 900
-
-# define PLAIN_X 0
-# define PLAIN_Y 0.67
 
 typedef struct s_rc
 {
@@ -60,6 +57,8 @@ typedef struct s_map
 	int		height;
 	double	player_x;
 	double	player_y;
+	double	plain_x;
+	double	plain_y;
 	double	dir_x;
 	double	dir_y;
 	int		**map;
@@ -71,9 +70,9 @@ typedef struct s_mlx
 {
 	void	*m;
 	void	*w;
-	void	*img[ASSET_CNT + 1];
+	void	*img[ASSET_CNT + 2];
 	int		*data[ASSET_CNT];
-	int		*buffer;
+	int		*buffer[2];
 	int		img_w;
 	int		img_h;
 	int		bpp;
@@ -88,7 +87,17 @@ typedef struct s_param
 	t_mlx	*mlx;
 }t_param;
 
-int	main_loop(t_param *t);
-int	draw_screen(t_map *map, t_mlx *mlx);
+/* ft_raycasting.c */
+int		main_loop(t_param *t);
+int		draw_screen(t_map *map, t_mlx *mlx, int img);
+
+/* ft_raycasting_utils.c */
+double	myabs(double a);
+
+/* ft_raycasting_calc.c */
+void	get_step(t_rc *rc, t_map *map);
+void	dda(t_rc *rc, t_map *map);
+void	find_wall_hit(t_rc *rc, t_map *map, t_mlx *mlx);
+void	get_texture_and_draw(t_rc *rc, t_mlx *mlx, int i, int img);
 
 #endif
