@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:30 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 15:27:03 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 16:06:19 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	draw_screen(t_map *map, t_mlx *mlx, int img)
 		find_wall_hit(&rc, map, mlx);
 		get_texture_and_draw(&rc, mlx, i, img);
 	}
-	ft_memset(mlx->buffer[img ^ 1], 0, 4 * WINDOW_H * WINDOW_W);
+	fill_background(mlx, map, img);
 	return (0);
 }
 

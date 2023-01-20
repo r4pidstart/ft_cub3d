@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:09 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 15:50:53 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 15:53:50 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ int	main(void)
 
 	param = (t_param){.map = &map, .mlx = &mlx};
 	map = (t_map){.width = 24, .height = 24, .player_x = 21, .player_y = 12, \
-		.dir_x = -1, .dir_y = 0, .plain_x = 0, .plain_y = 0.67};
+		.dir_x = -1, .dir_y = 0, .plain_x = 0, .plain_y = 0.67, \
+		.ceiling = 0x777777, .floor = 0x000000};
 		
 	map.map = (int **)malloc(sizeof(int *) * 24);
 	for(int i=0; i<24; i++)

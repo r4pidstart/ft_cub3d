@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:48 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 15:31:02 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 16:13:25 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include"../mlx/mlx.h"
 # include"../ft_mylibft/libft.h"
 
-# define WINDOW_W 1440
-# define WINDOW_H 900
+# define WINDOW_W 1280
+# define WINDOW_H 768
 
 enum e_dir
 {
@@ -64,6 +64,8 @@ typedef struct s_map
 {
 	int		width;
 	int		height;
+	int		ceiling;
+	int		floor;
 	double	player_x;
 	double	player_y;
 	double	plain_x;
@@ -103,6 +105,7 @@ int		draw_screen(t_map *map, t_mlx *mlx, int img);
 /* ft_raycasting_utils.c */
 double	myabs(double a);
 int		change_dir(int key, t_map *map, double rs);
+int		fill_background(t_mlx *mlx, t_map *map, int img);
 
 /* ft_raycasting_calc.c */
 void	get_step(t_rc *rc, t_map *map);
