@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:56:42 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 14:29:11 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 16:22:27 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	find_wall_hit(t_rc *rc, t_map *map, t_mlx *mlx)
 	rc->draw_s = ft_max(0, -rc->line_h / 2 + WINDOW_H / 2);
 	rc->draw_e = ft_min(WINDOW_H - 1, rc->line_h / 2 + WINDOW_H / 2);
 	if (rc->side)
-		rc->wall_x = rc->x + rc->wall_d * rc->ray_x;
+		rc->wall_x = map->player_x + rc->wall_d * rc->ray_x;
 	else
-		rc->wall_x = rc->y + rc->wall_d * rc->ray_y;
+		rc->wall_x = map->player_y + rc->wall_d * rc->ray_y;
 	rc->wall_x -= floor(rc->wall_x);
 	rc->tex_x = rc->wall_x * mlx->img_w;
 	if ((!rc->side && rc->ray_x > 0) || (rc->side && rc->ray_y < 0))
