@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:48 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 14:29:35 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/20 14:50:42 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ typedef struct s_rc
 	int		draw_e;
 	int		tex_id;
 	int		color;
-	double	time;
-	double	old_time;
 }t_rc;
 
 typedef struct s_map
@@ -88,7 +86,7 @@ typedef struct s_param
 }t_param;
 
 /* ft_raycasting.c */
-int		main_loop(t_param *t);
+int		looooop(t_param *t);
 int		draw_screen(t_map *map, t_mlx *mlx, int img);
 
 /* ft_raycasting_utils.c */
