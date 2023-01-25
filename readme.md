@@ -93,6 +93,7 @@ side the wall is facing (North, South, East, West).
 			· R,G,B colors in range [0,255]: 0, 255, 255
 
 	◦ Example of the mandatory part with a minimalist .cub scene:
+
 		NO ./path_to_the_north_texture
 		SO ./path_to_the_south_texture
 		WE ./path_to_the_west_texture
@@ -122,15 +123,15 @@ side the wall is facing (North, South, East, West).
 ##### Description
 Bonus list:
 
-• Wall collisions.
+	• Wall collisions.
 
-• A minimap system.
+	• A minimap system.
 
-• Doors which can open and close.
+	• Doors which can open and close.
 
-• animated sprite.
+	• animated sprite.
 
-• Rotate the point of view with the mouse.
+	• Rotate the point of view with the mouse.
 
 ---
 
