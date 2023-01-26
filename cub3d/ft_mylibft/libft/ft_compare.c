@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 03:22:07 by tjo               #+#    #+#             */
-/*   Updated: 2022/09/12 00:22:01 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/24 21:25:52 by joowpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,11 @@ long	ft_max(long a, long b)
 	if (a > b)
 		return (a);
 	return (b);
+}
+
+int		ft_isdigit(int c)
+{
+	if ('0' <= c && c <= '9')
+		return (1);
+	return (0);
 }

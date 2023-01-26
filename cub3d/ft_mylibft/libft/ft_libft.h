@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:16:55 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 14:12:48 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/26 15:34:08 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_list
 
 /* libc functions */
 // int		ft_isalpha(int c);
-// int		ft_isdigit(int c);
+int		ft_isdigit(int c);
 // int		ft_isalnum(int c);
 // int		ft_isascii(int c);
 // int		ft_isprint(int c);

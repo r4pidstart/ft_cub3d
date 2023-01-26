@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:48 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 16:13:25 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/26 16:28:54 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include"../mlx/mlx.h"
 # include"../ft_mylibft/libft.h"
 
-# define WINDOW_W 1280
-# define WINDOW_H 768
+# define WINDOW_W 1920
+# define WINDOW_H 1080
 
 enum e_dir
 {
@@ -73,6 +73,9 @@ typedef struct s_map
 	double	dir_x;
 	double	dir_y;
 	int		**map;
+	char	**cmap;
+	char	dir_ch;
+	char	*info[8];
 }t_map;
 
 # define ASSET_CNT 10
