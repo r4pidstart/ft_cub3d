@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:30 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 16:23:54 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/26 15:41:18 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ int	looooop(t_param *t)
 	px = x;
 	img ^= 1;
 	draw_screen(t->map, t->mlx, img);
+	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, t->mlx->img[img + ASSET_CNT]);
 	mlx_put_image_to_window(t->mlx->m, t->mlx->w, \
 		t->mlx->img[img + ASSET_CNT], 0, 0);
+	mlx_sync(MLX_SYNC_WIN_CMD_COMPLETED, t->mlx->w);
 	return (0);
 }
