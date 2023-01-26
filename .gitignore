@@ -1,2 +1,5 @@
 *.o
 *.dSYM
+mlx/*.swiftdoc
+mlx/*.swiftmodule
+mlx/*.swiftsourceinfo
