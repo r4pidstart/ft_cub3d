@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joowpark <joowpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 20:25:04 by joowpark          #+#    #+#             */
-/*   Updated: 2023/01/26 14:20:26 by joowpark         ###   ########.fr       */
+/*   Updated: 2023/01/30 05:48:27 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,6 @@
 # include <fcntl.h>
 # include "../ft_mylibft/libft.h"
 # include "../raycasting/ft_raycasting_header.h"
-
-enum e_type{
-	NO,
-	SO,
-	WE,
-	EA,
-	F,
-	C,
-	NR_INFO,
-};
 
 enum e_error{
 	NUN,

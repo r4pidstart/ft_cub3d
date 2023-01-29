@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:56:42 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 05:03:27 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 06:19:51 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,18 @@ void	dda(t_rc *rc, t_map *map)
 		rc->wall_d = (rc->x - map->player_x + (1 - rc->step_x) / 2) / rc->ray_x;
 }
 
+int	get_wall_dir(t_rc *rc, t_map *map)
+{
+	if (!rc->side && map->player_x - rc->x > 0)
+		return (NO + ASSET_CNT);
+	else if (!rc->side)
+		return (SO + ASSET_CNT);
+	else if (rc->side && map->player_y - rc->y > 0)
+		return (EA + ASSET_CNT);
+	else
+		return (WE + ASSET_CNT);
+}
+
 void	find_wall_hit(t_rc *rc, t_map *map, t_mlx *mlx)
 {
 	rc->line_h = WINDOW_H / rc->wall_d;
@@ -79,7 +91,10 @@ void	find_wall_hit(t_rc *rc, t_map *map, t_mlx *mlx)
 	rc->tex_x = rc->wall_x * mlx->img_w;
 	if ((!rc->side && rc->ray_x > 0) || (rc->side && rc->ray_y < 0))
 		rc->tex_x = mlx->img_w - rc->tex_x - 1;
-	rc->tex_id = map->map[rc->y][rc->x] - 1;
+	if (map->map[rc->y][rc->x] - 1)
+		rc->tex_id = map->map[rc->y][rc->x] - 1;
+	else
+		rc->tex_id = get_wall_dir(rc, map);
 }
 
 void	get_texture_and_draw(t_rc *rc, t_mlx *mlx, int i, int img)
@@ -92,7 +107,10 @@ void	get_texture_and_draw(t_rc *rc, t_mlx *mlx, int i, int img)
 	while (++j < rc->draw_e)
 	{
 		rc->tex_y = (int)rc->tex_pos & (mlx->img_h - 1);
-		rc->color = mlx->tex[rc->tex_id][mlx->img_h * rc->tex_y + rc->tex_x];
+		if (rc->tex_id >= ASSET_CNT)
+			rc->color = mlx->wall[rc->tex_id - ASSET_CNT][mlx->img_h * rc->tex_y + rc->tex_x];
+		else
+		 	rc->color = mlx->tex[rc->tex_id][mlx->img_h * rc->tex_y + rc->tex_x];
 		if (rc->side)
 			rc->color = (rc->color >> 1) & 8355711;
 		rc->tex_pos += rc->tex_step;

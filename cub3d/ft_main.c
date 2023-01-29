@@ -6,19 +6,43 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:09 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 05:07:09 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 06:05:32 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_header.h"
 
-int	get_assets(t_mlx *mlx)
+// IF FILE NOT EXISTS -> mlx_xpm_file_to_image returns 0?
+int	get_wall_texture(t_mlx *mlx, t_map *map)
+{
+	int	i;
+
+	(void)map;
+	i = -1;
+	while (++i < 4)
+	{
+		mlx->img[i + ASSET_CNT + 2] = mlx_xpm_file_to_image(mlx->m, \
+		map->info[i], &mlx->img_w, &mlx->img_h);
+		mlx->data[i + ASSET_CNT + 2] = (int *)mlx_get_data_addr(\
+			mlx->img[i + ASSET_CNT + 2], \
+			&mlx->bpp, &mlx->size_line, &mlx->endian);
+		mlx->wall[i] = malloc(sizeof(int) * (mlx->img_h * mlx->img_w));
+		// if (!mlx->wall[i])
+		// 	return (error_handling());
+		ft_memcpy(mlx->wall[i], mlx->data[i + ASSET_CNT + 2], \
+			mlx->img_h * mlx->img_w * 4);
+	}
+	return (0);
+}
+
+int	get_assets(t_mlx *mlx, t_map *map)
 {
 	int	i;
 
 	i = -1;
 	// if (!mlx->tex)
 	// 	return (error_handling());
+	get_wall_texture(mlx, map);
 	char	*assets[ASSET_CNT] =
 	{
 		"assets/chest.xpm",
@@ -82,7 +106,7 @@ int	main(int ac, char **av)
 	mlx.m = mlx_init();
 	mlx.w = mlx_new_window(mlx.m, WINDOW_W, WINDOW_H, "cub3d");
 
-	get_assets(&mlx);
+	get_assets(&mlx, &map);
 	mlx.img[ASSET_CNT + 0] = mlx_new_image(mlx.m, WINDOW_W, WINDOW_H);
 	mlx.img[ASSET_CNT + 1] = mlx_new_image(mlx.m, WINDOW_W, WINDOW_H);
 	mlx.buffer[0] = (int *)mlx_get_data_addr(mlx.img[ASSET_CNT + 0], \

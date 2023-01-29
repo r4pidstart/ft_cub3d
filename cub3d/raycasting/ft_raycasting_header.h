@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:48 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 04:50:43 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 06:02:59 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ enum e_dir
 	K_S = 1,
 	K_D = 2,
 	K_ESC = 53
+};
+
+enum e_type{
+	NO,
+	SO,
+	WE,
+	EA,
+	F,
+	C,
+	NR_INFO,
 };
 
 typedef struct s_rc
@@ -84,8 +94,8 @@ typedef struct s_mlx
 {
 	void	*m;
 	void	*w;
-	void	*img[ASSET_CNT + 2];
-	int		*data[ASSET_CNT];
+	void	*img[ASSET_CNT + 6];
+	int		*data[ASSET_CNT + 6];
 	int		*buffer[2];
 	int		img_w;
 	int		img_h;
@@ -93,6 +103,7 @@ typedef struct s_mlx
 	int		size_line;
 	int		endian;
 	int		*tex[ASSET_CNT];
+	int		*wall[4];
 }t_mlx;
 
 typedef struct s_param
