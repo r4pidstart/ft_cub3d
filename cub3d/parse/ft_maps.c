@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 12:37:25 by joowpark          #+#    #+#             */
-/*   Updated: 2023/01/30 07:42:22 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 07:43:40 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	initial_player_dir(struct s_map *m)
 	m->plain_y = 0.67;
 	m->dir_x = -1;
 	m->dir_y = 0;
-
 	if (m->dir_ch == 'S')
 		change_dir(K_RIGHT, m, M_PI_2);
 	else if (m->dir_ch == 'W')
