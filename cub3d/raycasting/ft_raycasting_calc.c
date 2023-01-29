@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:56:42 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 07:09:57 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 07:41:17 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ void	dda(t_rc *rc, t_map *map)
 int	get_wall_dir(t_rc *rc, t_map *map)
 {
 	if (!rc->side && map->player_x - rc->x > 0)
-		return (NO + ASSET_CNT);
-	else if (!rc->side)
-		return (SO + ASSET_CNT);
-	else if (rc->side && map->player_y - rc->y > 0)
-		return (EA + ASSET_CNT);
-	else
 		return (WE + ASSET_CNT);
+	else if (!rc->side)
+		return (EA + ASSET_CNT);
+	else if (rc->side && map->player_y - rc->y > 0)
+		return (SO + ASSET_CNT);
+	else
+		return (NO + ASSET_CNT);
 }
 
 void	find_wall_hit(t_rc *rc, t_map *map, t_mlx *mlx)

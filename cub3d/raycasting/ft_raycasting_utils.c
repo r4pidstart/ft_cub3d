@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:46:38 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 16:23:56 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 07:29:42 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ double	myabs(double a)
 
 int	change_dir(int key, t_map *map, double rs)
 {
-	double			old_dir_x;
-	double			old_plane_x;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	if (key == K_RIGHT)
 	{
