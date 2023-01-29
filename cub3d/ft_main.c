@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:09 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 04:20:29 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 05:07:09 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ int	get_assets(t_mlx *mlx)
 		"assets/sans.xpm",
 		"assets/wall.xpm",
 		"assets/wall.xpm",
-		"assets/wall.xpm",
-		"assets/wall.xpm",
-		"assets/wall.xpm",
-		"assets/wall.xpm",
 		"assets/wall.xpm"
 	};
 	while (++i < ASSET_CNT)
@@ -46,53 +42,43 @@ int	get_assets(t_mlx *mlx)
 	return (0);
 }
 
-int worldMap[24][24]=
+void print_map(t_map *map)
 {
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
+	for (int i = 0 ; i < NR_INFO; i++)
+		printf("[%s]\n", map->info[i]);
+	for (int i = 0; i < map->height; i ++)
+	{
+		for (int j = 0 ; j < map->width ; j ++)
+			printf("%2d ", map->map[i][j]);
+		printf("\n");
+	}
+}
 
-int	main(void)
+int	main(int ac, char **av)
 {
+	int		error;
 	t_param	param;
 	t_map	map;
 	t_mlx	mlx;
 
+	(void)ac, (void)av;
 	param = (t_param){.map = &map, .mlx = &mlx};
-	map = (t_map){.width = 24, .height = 24, .player_x = 21, .player_y = 12, \
-		.dir_x = -1, .dir_y = 0, .plain_x = 0, .plain_y = 0.67, \
-		.ceiling = 0x777777, .floor = 0x000000};
-		
-	map.map = (int **)malloc(sizeof(int *) * 24);
-	for(int i=0; i<24; i++)
-		map.map[i] = (int *)malloc(sizeof(int) * 24);
-	
-	for(int i=0; i<24; i++)
-		for(int j=0; j<24; j++)
-			map.map[i][j]=worldMap[i][j];
-			
+
+// #ifdef DEBUG
+	error = init_map(&map, "/Users/jotaesik/ft_cub3d/cub3d/cub3.cub");
+// #else
+// 	if (ac != 2)
+// 	{	
+// 		ft_printf("FEW ARG or MANY ARG\n");
+// 		return (1);
+// 	}
+// 	error = init_map(&map, av[1]);
+// #endif
+
+	if (error)
+		map_error_handling(&map, error);
+	print_map(&map);
+
 	mlx.m = mlx_init();
 	mlx.w = mlx_new_window(mlx.m, WINDOW_W, WINDOW_H, "cub3d");
 
@@ -109,7 +95,7 @@ int	main(void)
 	mlx_mouse_hide();
 	mlx_mouse_move(mlx.w, WINDOW_W / 2, WINDOW_H / 2);
 	mlx_hook(mlx.w, 2, 0, &key_hook, &param);
-    mlx_hook(mlx.w, 17, 0, close_game, 0);
+	mlx_hook(mlx.w, 17, 0, &close_game, 0);
 	mlx_loop_hook(mlx.m, &looooop, &param);
 	mlx_loop(mlx.m);
 }

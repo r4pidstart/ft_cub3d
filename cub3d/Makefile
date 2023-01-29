@@ -6,7 +6,7 @@
 #    By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/31 12:48:31 by tjo               #+#    #+#              #
-#    Updated: 2023/01/30 04:23:02 by tjo              ###   ########.fr        #
+#    Updated: 2023/01/30 04:48:33 by tjo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,10 @@ LIBFT_SRCS = ft_mylibft
 MLX = libmlx.dylib
 MLX_SRCS = mlx
 
-SRCS = raycasting/ft_raycasting.c raycasting/ft_raycasting_utils.c \
-	raycasting/ft_raycasting_calc.c ft_main.c ft_keyhook.c
+SRCS = raycasting/ft_raycasting.c raycasting/ft_raycasting_utils.c raycasting/ft_raycasting_calc.c \
+	parse/ft_check_lines.c parse/ft_dfs_check.c parse/ft_free.c parse/ft_get_something.c parse/ft_make_map.c \
+	parse/ft_maps.c parse/ft_node.c parse/ft_parse.c parse/ft_set_map.c parse/ft_string.c \
+	ft_main.c ft_keyhook.c
 SRCS_FOLDER = 
 
 uname := $(shell uname -p)
@@ -48,7 +50,7 @@ $(NAME): $(LIBFT) $(MLX) $(addprefix $(SRCS_FOLDER), $(SRCS:.c=.o))
 	-L$(LIBFT_SRCS) -lft
 
 $(LIBFT):
-	make -C $(LIBFT_SRCS) all
+	make -C $(LIBFT_SRCS) all -j 8
 
 $(MLX):
 	make all -C $(MLX_SRCS)

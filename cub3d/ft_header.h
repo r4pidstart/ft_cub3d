@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:32 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 04:21:53 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 04:28:01 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_HEADER_H
 
 # include"raycasting/ft_raycasting_header.h"
+# include"parse/ft_parse.h"
 
 /* ft_keyhook.c */
 int	check_collision(t_param *t, double next_x, double next_y);

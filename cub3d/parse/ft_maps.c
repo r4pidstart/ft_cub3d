@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 12:37:25 by joowpark          #+#    #+#             */
-/*   Updated: 2023/01/26 16:12:11 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 05:05:00 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,9 @@ int	init_map(struct s_map *m, char *file_name)
 	if (!error && set_map(m))
 		error = ERROR_CUB;
 	close(fd);
+	m->dir_x = -1;
+	m->dir_y = 0;
+	m->plain_x = 0;
+	m->plain_y = 0.67;
 	return (error);
 }

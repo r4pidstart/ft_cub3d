@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 20:24:46 by joowpark          #+#    #+#             */
-/*   Updated: 2023/01/26 16:52:15 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 04:33:12 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	get_info(int fd, struct s_map *m)
 	int		idx;
 	char	**info;
 
+	(void)info;
 	info = m->info;
 	idx = 0;
 	while (idx < NR_INFO)
@@ -83,6 +84,7 @@ static int	__get_imap(struct s_map *m)
 	int	x;
 	int	y;
 
+	(void)x, (void)y;
 	x = 0;
 	y = 0;
 	if (check_lines(m))

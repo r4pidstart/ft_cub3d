@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:56:42 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/20 16:22:27 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 05:03:27 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	dda(t_rc *rc, t_map *map)
 			rc->y += rc->step_y;
 			rc->side = 1;
 		}
-		if (map->map[rc->x][rc->y])
+		if (map->map[rc->y][rc->x])
 			rc->hit = 1;
 	}
 	if (rc->side)
@@ -79,7 +79,7 @@ void	find_wall_hit(t_rc *rc, t_map *map, t_mlx *mlx)
 	rc->tex_x = rc->wall_x * mlx->img_w;
 	if ((!rc->side && rc->ray_x > 0) || (rc->side && rc->ray_y < 0))
 		rc->tex_x = mlx->img_w - rc->tex_x - 1;
-	rc->tex_id = map->map[rc->x][rc->y] - 1;
+	rc->tex_id = map->map[rc->y][rc->x] - 1;
 }
 
 void	get_texture_and_draw(t_rc *rc, t_mlx *mlx, int i, int img)

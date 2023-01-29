@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dfs_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joowpark <joowpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 09:22:47 by joowpark          #+#    #+#             */
-/*   Updated: 2023/01/26 14:32:42 by joowpark         ###   ########.fr       */
+/*   Updated: 2023/01/30 04:32:28 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	is_empty_space(struct s_map *m, int x, int y)
 	int			check;
 	int			idx;
 
+	(void)check;
 	check = 0;
 	idx = 0;
 	map = m->cmap;
@@ -75,6 +76,7 @@ static int	is_surround_empty(struct s_map *m, char **map, int x, int y)
 	int		nr_empty;
 	int		nr_dir_ch;
 
+	(void)nr_empty, (void)nr_dir_ch;
 	nr_empty = 0;
 	nr_dir_ch = 0;
 	idx = 0;
