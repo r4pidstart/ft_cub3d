@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:48 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 06:49:59 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 06:56:01 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ enum e_type{
 	NR_INFO,
 };
 
+enum e_sprite
+{
+	EMPTY,
+	DOOR,
+	ANIMATED
+};
+
 typedef struct s_rc
 {
 	double	camera_x;
@@ -77,7 +84,7 @@ typedef struct s_map
 	int		height;
 	int		ceiling;
 	int		floor;
-	int		door;
+	int		is_door_closed;
 	double	player_x;
 	double	player_y;
 	double	plain_x;
