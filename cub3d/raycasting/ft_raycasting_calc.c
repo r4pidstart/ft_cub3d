@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:56:42 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 06:19:51 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 06:21:23 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,11 @@ void	get_texture_and_draw(t_rc *rc, t_mlx *mlx, int i, int img)
 	{
 		rc->tex_y = (int)rc->tex_pos & (mlx->img_h - 1);
 		if (rc->tex_id >= ASSET_CNT)
-			rc->color = mlx->wall[rc->tex_id - ASSET_CNT][mlx->img_h * rc->tex_y + rc->tex_x];
+			rc->color = \
+		mlx->wall[rc->tex_id - ASSET_CNT][mlx->img_h * rc->tex_y + rc->tex_x];
 		else
-		 	rc->color = mlx->tex[rc->tex_id][mlx->img_h * rc->tex_y + rc->tex_x];
+			rc->color = \
+		mlx->tex[rc->tex_id][mlx->img_h * rc->tex_y + rc->tex_x];
 		if (rc->side)
 			rc->color = (rc->color >> 1) & 8355711;
 		rc->tex_pos += rc->tex_step;

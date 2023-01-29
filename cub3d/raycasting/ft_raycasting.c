@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:30 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 05:26:09 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 06:29:21 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,28 @@ int	draw_screen(t_map *map, t_mlx *mlx, int img)
 
 int	draw_minimap(t_map *map, t_mlx *mlx, int *img)
 {
-	const int	offset = 50;
+	const int	offset = 20;
 	const int	multiplier = 12;
 	int			i;
 	int			j;
+	int			color;
 
-	i = offset - 1;
+	i = -1;
 	while (++i < map->height * multiplier)
 	{
-		j = offset - 1;
+		j = -1;
 		while (++j < map->width * multiplier)
 		{
 			if ((int)map->player_y == i / multiplier \
 				&& (int)map->player_x == j / multiplier)
-				img[i * mlx->size_line / 4 + j] = 0xAA0000;
+				color = 0xAA0000;
+			else if (map->map[i / multiplier][j / multiplier] == -1)
+				color = 0x666666;
 			else if (map->map[i / multiplier][j / multiplier])
-				img[i * mlx->size_line / 4 + j] = 0x888888;
+				color = 0x888888;
 			else
-				img[i * mlx->size_line / 4 + j] = 0xAAAAAA;
+				color = 0xAAAAAA;
+			img[(i + offset) * mlx->size_line / 4 + j + offset] = color;
 		}
 	}
 	return (0);

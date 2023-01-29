@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:09 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 06:05:32 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 06:23:11 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	get_wall_texture(t_mlx *mlx, t_map *map)
 	{
 		mlx->img[i + ASSET_CNT + 2] = mlx_xpm_file_to_image(mlx->m, \
 		map->info[i], &mlx->img_w, &mlx->img_h);
+		// if (!mlx->img[i + ASSET_CNT + 2])
+		// 	return (error_handling());
 		mlx->data[i + ASSET_CNT + 2] = (int *)mlx_get_data_addr(\
 			mlx->img[i + ASSET_CNT + 2], \
 			&mlx->bpp, &mlx->size_line, &mlx->endian);
@@ -45,12 +47,9 @@ int	get_assets(t_mlx *mlx, t_map *map)
 	get_wall_texture(mlx, map);
 	char	*assets[ASSET_CNT] =
 	{
-		"assets/chest.xpm",
-		"assets/wall.xpm",
-		"assets/sans.xpm",
-		"assets/wall.xpm",
-		"assets/wall.xpm",
-		"assets/wall.xpm"
+		"assets/img1.xpm",
+		"assets/img2.xpm",
+		"assets/door.xpm"
 	};
 	while (++i < ASSET_CNT)
 	{
