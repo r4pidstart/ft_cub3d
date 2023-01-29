@@ -6,7 +6,7 @@
 #    By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/31 12:48:31 by tjo               #+#    #+#              #
-#    Updated: 2023/01/20 13:58:02 by tjo              ###   ########.fr        #
+#    Updated: 2023/01/30 04:23:02 by tjo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ MLX = libmlx.dylib
 MLX_SRCS = mlx
 
 SRCS = raycasting/ft_raycasting.c raycasting/ft_raycasting_utils.c \
-	raycasting/ft_raycasting_calc.c ft_main.c
+	raycasting/ft_raycasting_calc.c ft_main.c ft_keyhook.c
 SRCS_FOLDER = 
 
 uname := $(shell uname -p)
