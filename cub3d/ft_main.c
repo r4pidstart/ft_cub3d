@@ -6,12 +6,11 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:09 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/26 16:20:30 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 04:19:16 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_header.h"
-
 
 int	get_assets(t_mlx *mlx)
 {
@@ -42,7 +41,7 @@ int	get_assets(t_mlx *mlx)
 		mlx->tex[i] = malloc(sizeof(int) * (mlx->img_h * mlx->img_w));
 		// if (!mlx->tex[i])
 		// 	return (error_handling());
-		ft_memcpy(mlx->tex[i], mlx->data[i], 4 *  mlx->img_h * mlx->img_w);
+		ft_memcpy(mlx->tex[i], mlx->data[i], mlx->img_h * mlx->img_w * 4);
 	}
 	return (0);
 }
@@ -75,32 +74,53 @@ int worldMap[24][24]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-// TODO: wall collision
+int	check_collision(t_param *t, double next_x, double next_y)
+{
+	const double	safe_dist = 0.2;
+
+	if (t->map->map[(int)(next_x + safe_dist)][(int)(next_y + safe_dist)] \
+		|| t->map->map[(int)(next_x - safe_dist)][(int)(next_y - safe_dist)] \
+		|| t->map->map[(int)(next_x - safe_dist)][(int)(next_y + safe_dist)] \
+		|| t->map->map[(int)(next_x + safe_dist)][(int)(next_y - safe_dist)])
+		return (0);
+	t->map->player_x = next_x;
+	t->map->player_y = next_y;
+	return (0);
+}
+
+// TODO: wall collision, exit button
 int	move_player(int key, t_param *t)
 {
 	const double	move_speed = 0.07;
+	double			next_x;
+	double			next_y;
 
 	if (key == K_W)
 	{
-		t->map->player_x += t->map->dir_x * move_speed;
-		t->map->player_y += t->map->dir_y * move_speed;
+		next_x = t->map->player_x + t->map->dir_x * move_speed;
+		next_y = t->map->player_y + t->map->dir_y * move_speed;
 	}
 	else if (key == K_A)
 	{
-		t->map->player_x -= t->map->dir_y * move_speed;
-		t->map->player_y += t->map->dir_x * move_speed;
+		next_x = t->map->player_x - t->map->dir_x * move_speed;
+		next_y = t->map->player_y + t->map->dir_y * move_speed;
 	}
 	else if (key == K_S)
 	{
-		t->map->player_x -= t->map->dir_x * move_speed;
-		t->map->player_y -= t->map->dir_y * move_speed;
+		next_x = t->map->player_x - t->map->dir_x * move_speed;
+		next_y = t->map->player_y - t->map->dir_y * move_speed;
 	}
-	else if (key == K_D)
+	else // if (key == K_D)
 	{
-		t->map->player_x += t->map->dir_y * move_speed;
-		t->map->player_y -= t->map->dir_x * move_speed;
+		next_x = t->map->player_x + t->map->dir_x * move_speed;
+		next_y = t->map->player_y - t->map->dir_y * move_speed;
 	}
-	return (0);
+	return (check_collision(t, next_x, next_y));
+}
+
+int	close_game(void)
+{
+	exit(0);
 }
 
 int	key_hook(int key, t_param *t)
@@ -151,6 +171,7 @@ int	main(void)
 	mlx_mouse_hide();
 	mlx_mouse_move(mlx.w, WINDOW_W / 2, WINDOW_H / 2);
 	mlx_hook(mlx.w, 2, 0, &key_hook, &param);
+    mlx_hook(mlx.w, 17, 0, close_game, 0);
 	mlx_loop_hook(mlx.m, &looooop, &param);
 	mlx_loop(mlx.m);
 }
