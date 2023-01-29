@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:30 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 06:29:21 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 06:45:37 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ int	looooop(t_param *t)
 	mlx_put_image_to_window(t->mlx->m, t->mlx->w, \
 		t->mlx->img[img + ASSET_CNT], 0, 0);
 	mlx_sync(MLX_SYNC_WIN_CMD_COMPLETED, t->mlx->w);
+	t->mlx->time = (t->mlx->time + 1) % 30;
 	return (0);
 }

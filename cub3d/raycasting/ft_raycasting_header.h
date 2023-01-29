@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:48 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 06:22:47 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 06:49:59 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ enum e_dir
 	K_A = 0,
 	K_S = 1,
 	K_D = 2,
+	K_E = 14,
 	K_ESC = 53
 };
 
@@ -76,6 +77,7 @@ typedef struct s_map
 	int		height;
 	int		ceiling;
 	int		floor;
+	int		door;
 	double	player_x;
 	double	player_y;
 	double	plain_x;
@@ -104,6 +106,7 @@ typedef struct s_mlx
 	int		endian;
 	int		*tex[ASSET_CNT];
 	int		*wall[4];
+	int		time;
 }t_mlx;
 
 typedef struct s_param

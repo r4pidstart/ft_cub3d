@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:56:42 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 06:21:23 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 06:47:52 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,10 @@ void	find_wall_hit(t_rc *rc, t_map *map, t_mlx *mlx)
 	rc->tex_x = rc->wall_x * mlx->img_w;
 	if ((!rc->side && rc->ray_x > 0) || (rc->side && rc->ray_y < 0))
 		rc->tex_x = mlx->img_w - rc->tex_x - 1;
-	if (map->map[rc->y][rc->x] - 1)
-		rc->tex_id = map->map[rc->y][rc->x] - 1;
+	if (map->map[rc->y][rc->x] - 1 == 1) // door
+		rc->tex_id = 0;
+	else if (map->map[rc->y][rc->x] - 1 == 2) // animated sprite
+		rc->tex_id = 1 + (mlx->time / 15);
 	else
 		rc->tex_id = get_wall_dir(rc, map);
 }
@@ -104,6 +106,7 @@ void	get_texture_and_draw(t_rc *rc, t_mlx *mlx, int i, int img)
 	rc->tex_step = 1. * mlx->img_h / rc->line_h;
 	rc->tex_pos = (rc->draw_s - (WINDOW_H + rc->line_h) / 2) * rc->tex_step;
 	j = rc->draw_s - 1;
+	ft_printf("%d\n", rc->tex_id);
 	while (++j < rc->draw_e)
 	{
 		rc->tex_y = (int)rc->tex_pos & (mlx->img_h - 1);

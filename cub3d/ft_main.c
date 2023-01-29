@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:09 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 06:23:11 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 06:39:59 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	get_assets(t_mlx *mlx, t_map *map)
 	get_wall_texture(mlx, map);
 	char	*assets[ASSET_CNT] =
 	{
+		"assets/door.xpm",
 		"assets/img1.xpm",
-		"assets/img2.xpm",
-		"assets/door.xpm"
+		"assets/img2.xpm"
 	};
 	while (++i < ASSET_CNT)
 	{
