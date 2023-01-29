@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:30 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/26 15:41:18 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/30 05:26:09 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,31 @@ int	draw_screen(t_map *map, t_mlx *mlx, int img)
 	return (0);
 }
 
+int	draw_minimap(t_map *map, t_mlx *mlx, int *img)
+{
+	const int	offset = 50;
+	const int	multiplier = 12;
+	int			i;
+	int			j;
+
+	i = offset - 1;
+	while (++i < map->height * multiplier)
+	{
+		j = offset - 1;
+		while (++j < map->width * multiplier)
+		{
+			if ((int)map->player_y == i / multiplier \
+				&& (int)map->player_x == j / multiplier)
+				img[i * mlx->size_line / 4 + j] = 0xAA0000;
+			else if (map->map[i / multiplier][j / multiplier])
+				img[i * mlx->size_line / 4 + j] = 0x888888;
+			else
+				img[i * mlx->size_line / 4 + j] = 0xAAAAAA;
+		}
+	}
+	return (0);
+}
+
 int	looooop(t_param *t)
 {
 	static int	img;
@@ -52,6 +77,7 @@ int	looooop(t_param *t)
 	px = x;
 	img ^= 1;
 	draw_screen(t->map, t->mlx, img);
+	draw_minimap(t->map, t->mlx, t->mlx->buffer[img]);
 	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, t->mlx->img[img + ASSET_CNT]);
 	mlx_put_image_to_window(t->mlx->m, t->mlx->w, \
 		t->mlx->img[img + ASSET_CNT], 0, 0);
