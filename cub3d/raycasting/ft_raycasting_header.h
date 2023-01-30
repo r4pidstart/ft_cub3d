@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:48 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 06:56:01 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/31 04:12:57 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct s_map
 	char	*info[8];
 }t_map;
 
-# define ASSET_CNT 3
+# define ASSET_CNT 4
 
 typedef struct s_mlx
 {

@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 20:24:46 by joowpark          #+#    #+#             */
-/*   Updated: 2023/01/31 03:54:26 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/31 04:11:33 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,3 @@ int	get_imap(int fd, struct s_map *map)
 	map->cmap = node_to_str(root);
 	return (__get_imap(map));
 }
-

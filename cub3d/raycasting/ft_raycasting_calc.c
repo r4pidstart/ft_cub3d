@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:56:42 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 07:41:17 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/31 04:13:31 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	find_wall_hit(t_rc *rc, t_map *map, t_mlx *mlx)
 	if (map->map[rc->y][rc->x] - 1 == DOOR)
 		rc->tex_id = 0;
 	else if (map->map[rc->y][rc->x] - 1 == ANIMATED)
-		rc->tex_id = 1 + (mlx->time / 15);
+		rc->tex_id = 1 + (mlx->time / 10);
 	else
 		rc->tex_id = get_wall_dir(rc, map);
 }

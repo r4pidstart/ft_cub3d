@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:09 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/31 04:04:38 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/31 04:13:03 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static int	get_assets(t_mlx *mlx, t_map *map)
 	assets[0] = "assets/door.xpm";
 	assets[1] = "assets/img1.xpm";
 	assets[2] = "assets/img2.xpm";
+	assets[3] = "assets/img3.xpm";
 	i = -1;
 	get_wall_texture(mlx, map);
 	while (++i < ASSET_CNT)
@@ -72,10 +73,9 @@ static void	__mlx_init(t_mlx *mlx, t_map *map)
 {
 	t_param	param;
 
-	param = (t_param){.map =map, .mlx = mlx};
+	param = (t_param){.map = map, .mlx = mlx};
 	mlx->m = mlx_init();
 	mlx->w = mlx_new_window(mlx->m, WINDOW_W, WINDOW_H, "cub3d");
-
 	get_assets(mlx, map);
 	mlx->img[ASSET_CNT + 0] = mlx_new_image(mlx->m, WINDOW_W, WINDOW_H);
 	mlx->img[ASSET_CNT + 1] = mlx_new_image(mlx->m, WINDOW_W, WINDOW_H);
@@ -85,7 +85,6 @@ static void	__mlx_init(t_mlx *mlx, t_map *map)
 		&mlx->bpp, &mlx->size_line, &mlx->endian);
 	if (!mlx->buffer[0] || !mlx->buffer[1])
 		error_handling("Image buffer error");
-
 	mlx_mouse_hide();
 	mlx_mouse_move(mlx->w, WINDOW_W / 2, WINDOW_H / 2);
 	mlx_hook(mlx->w, 2, 0, &key_hook, &param);
@@ -107,9 +106,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	error = init_map(&map, av[1]);
-
 	if (error)
 		map_error_handling(&map, error);
-
 	__mlx_init(&mlx, &map);
 }
