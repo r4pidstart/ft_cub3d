@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 04:20:59 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 07:21:28 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/31 04:08:49 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_collision(t_map *m, double next_x, double next_y)
 		(m->map[(int)(next_y - safe_d)][(int)(next_x - safe_d)] &&
 		(m->map[(int)(next_y - safe_d)][(int)(next_x - safe_d)] != 2 \
 			|| !m->is_door_closed)))
-		return (0);
+		return (1);
 	m->player_x = next_x;
 	m->player_y = next_y;
 	return (0);
@@ -75,7 +75,11 @@ int	key_hook(int key, t_param *t)
 	else if (key == K_W || key == K_A || key == K_S || key == K_D)
 		move_player(key, t);
 	else if (key == K_E)
+	{
 		t->map->is_door_closed ^= 1;
+		if (check_collision(t->map, t->map->player_x, t->map->player_y))
+			t->map->is_door_closed ^= 1;
+	}
 	else if (key == K_ESC)
 		exit(0);
 	mlx_clear_window(t->mlx->m, t->mlx->w);
