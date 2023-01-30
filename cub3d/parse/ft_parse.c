@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 20:24:46 by joowpark          #+#    #+#             */
-/*   Updated: 2023/01/30 04:33:12 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/31 03:54:26 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,30 +124,3 @@ int	get_imap(int fd, struct s_map *map)
 	return (__get_imap(map));
 }
 
-// int main(int ac, char *av[])
-// {
-// 	struct s_map m;
-// 	int			error;
-
-// 	if (ac != 2)
-// 	{	
-// 		printf("FEW ARG or MANY ARG\n");
-// 		return (1);
-// 	}
-// 	error = init_map(&m, av[1]);
-// 	if (error)
-// 		map_error_handling(&m, error);
-// 	else
-// 	{
-// 		for (int i = 0 ; i < NR_INFO; i++)
-// 			printf("[%s]\n", m.info[i]);
-// 		for (int i = 0; i < m.height; i ++)
-// 		{
-// 			for (int j = 0 ; j < m.width ; j ++)
-// 				printf("%2d",m.map[i][j]);
-// 			printf("\n");
-// 		}
-// 	}
-// 	free_all_map(&m);
-// 	return (0);
-// }

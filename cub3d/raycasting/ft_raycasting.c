@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:30 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 06:45:37 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/31 04:06:14 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	draw_minimap(t_map *map, t_mlx *mlx, int *img)
 				color = 0x888888;
 			else
 				color = 0xAAAAAA;
-			img[(i + offset) * mlx->size_line / 4 + j + offset] = color;
+			img[(i + offset) * mlx->size_line / 4 + (map->width * multiplier - j) + offset] = color;
 		}
 	}
 	return (0);
