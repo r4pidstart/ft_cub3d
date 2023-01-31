@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:34:48 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/31 04:12:57 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/31 17:16:54 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ enum e_dir
 	K_S = 1,
 	K_D = 2,
 	K_E = 14,
+	K_Q = 12,
 	K_ESC = 53
 };
 
@@ -136,5 +137,8 @@ void	get_step(t_rc *rc, t_map *map);
 void	dda(t_rc *rc, t_map *map);
 void	find_wall_hit(t_rc *rc, t_map *map, t_mlx *mlx);
 void	get_texture_and_draw(t_rc *rc, t_mlx *mlx, int i, int img);
+
+/* ../ft_keyhook.c */
+int		mouse_status(int toggle);
 
 #endif

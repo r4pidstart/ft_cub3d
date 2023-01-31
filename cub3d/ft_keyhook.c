@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 04:20:59 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/31 17:07:56 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/31 17:14:56 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,15 @@ int	close_game(t_param *t)
 	exit(0);
 }
 
+int	mouse_status(int toggle)
+{
+	static int	mouse;
+
+	if (toggle)
+		mouse ^= 1;
+	return (mouse ^ toggle);
+}
+
 int	key_hook(int key, t_param *t)
 {
 	if (key == K_LEFT || key == K_RIGHT)
@@ -80,6 +89,13 @@ int	key_hook(int key, t_param *t)
 		t->map->is_door_closed ^= 1;
 		if (check_collision(t->map, t->map->player_x, t->map->player_y))
 			t->map->is_door_closed ^= 1;
+	}
+	else if (key == K_Q)
+	{
+		if (mouse_status(1))
+			mlx_mouse_hide();
+		else
+			mlx_mouse_show();
 	}
 	else if (key == K_ESC)
 		close_game(t);
