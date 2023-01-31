@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_make_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joowpark <joowpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 12:01:33 by joowpark          #+#    #+#             */
-/*   Updated: 2023/01/26 12:20:19 by joowpark         ###   ########.fr       */
+/*   Updated: 2023/02/01 04:26:03 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	char_to_int(int *dst, char *src, char sp)
 {
+	dst += ft_strlen(src) - 1;
 	while (*src)
 	{
 		if (*src == sp)
@@ -21,7 +22,7 @@ static void	char_to_int(int *dst, char *src, char sp)
 		else if (ft_isdigit(*src))
 			*dst = (int)(*src - '0');
 		src ++;
-		dst ++;
+		dst --;
 	}
 }
 
