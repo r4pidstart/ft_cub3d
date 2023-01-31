@@ -6,11 +6,11 @@
 #    By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/31 12:48:31 by tjo               #+#    #+#              #
-#    Updated: 2023/01/30 04:48:33 by tjo              ###   ########.fr        #
+#    Updated: 2023/01/31 17:55:28 by tjo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 CFLAGS = -Wall -Wextra -Werror -g3 -ggdb -fsanitize=address
 
 LIBFT = ft_mylibft/libft.a
@@ -37,7 +37,7 @@ endif
 BNAME = cub3d_bonus
 
 ifdef BONUS
- 	NAME = cub3d_bonus
+ 	NAME = cub3D_bonus
 endif
 
 all: $(NAME)
