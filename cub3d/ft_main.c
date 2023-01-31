@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:09 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/31 04:13:03 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/31 14:48:51 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static void	__mlx_init(t_mlx *mlx, t_map *map)
 		&mlx->bpp, &mlx->size_line, &mlx->endian);
 	if (!mlx->buffer[0] || !mlx->buffer[1])
 		error_handling("Image buffer error");
+	mlx->time = 0;
 	mlx_mouse_hide();
 	mlx_mouse_move(mlx->w, WINDOW_W / 2, WINDOW_H / 2);
 	mlx_hook(mlx->w, 2, 0, &key_hook, &param);
