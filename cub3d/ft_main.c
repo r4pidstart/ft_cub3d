@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:09 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/31 14:48:51 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/31 14:55:29 by joowpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	__mlx_init(t_mlx *mlx, t_map *map)
 	mlx_mouse_hide();
 	mlx_mouse_move(mlx->w, WINDOW_W / 2, WINDOW_H / 2);
 	mlx_hook(mlx->w, 2, 0, &key_hook, &param);
-	mlx_hook(mlx->w, 17, 0, &close_game, 0);
+	mlx_hook(mlx->w, 17, 0, &close_game, &param);
 	mlx_loop_hook(mlx->m, &looooop, &param);
 	mlx_loop(mlx->m);
 }

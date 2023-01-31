@@ -6,7 +6,7 @@
 /*   By: joowpark <joowpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 20:36:20 by joowpark          #+#    #+#             */
-/*   Updated: 2023/01/26 13:18:56 by joowpark         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:59:58 by joowpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ static void	set_dir_ch(struct s_map *map, char *line, char **t, char **l)
 {
 	map->dir_ch = *line;
 	*line = '0';
-	map->player_x = (double)(line - *l);
-	map->player_y = (double)(l - t);
+	map->player_x = (double)(line - *l) + 0.5;
+	map->player_y = (double)(l - t) + 0.5;
 }
 
 int	set_charcter_map(char **tokens, struct s_map *map)

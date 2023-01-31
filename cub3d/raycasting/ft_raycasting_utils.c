@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:46:38 by tjo               #+#    #+#             */
-/*   Updated: 2023/01/30 07:29:42 by tjo              ###   ########.fr       */
+/*   Updated: 2023/01/31 17:06:04 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	fill_background(t_mlx *mlx, t_map *map, int img)
 		while (++j < WINDOW_W)
 		{
 			if (i < WINDOW_H / 2)
-				mlx->buffer[img ^ 1][i * mlx->size_line / 4 + j] = map->floor;
-			else
 				mlx->buffer[img ^ 1][i * mlx->size_line / 4 + j] = map->ceiling;
+			else
+				mlx->buffer[img ^ 1][i * mlx->size_line / 4 + j] = map->floor;
 		}
 	}
 	return (0);
