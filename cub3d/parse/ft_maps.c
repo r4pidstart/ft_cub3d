@@ -6,7 +6,7 @@
 /*   By: tjo <tjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 12:37:25 by joowpark          #+#    #+#             */
-/*   Updated: 2023/01/30 07:43:40 by tjo              ###   ########.fr       */
+/*   Updated: 2023/02/01 04:34:48 by tjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,26 @@ void	initial_player_dir(struct s_map *m)
 		change_dir(K_RIGHT, m, M_PI_2 * 3);
 }
 
+void	mirror(struct s_map *m)
+{
+	int	i;
+	int	j;
+	int	t;
+
+	i = -1;
+	while (++i < m->height)
+	{
+		j = -1;
+		while (++j < m->width / 2)
+		{
+			t = m->map[i][j];
+			m->map[i][j] = m->map[i][m->width - j - 1];
+			m->map[i][m->width - j - 1] = t;
+		}
+	}
+	m->player_x = m->width - m->player_x;
+}
+
 int	init_map(struct s_map *m, char *file_name)
 {
 	int		fd;
@@ -54,5 +74,6 @@ int	init_map(struct s_map *m, char *file_name)
 		error = ERROR_CUB;
 	close(fd);
 	initial_player_dir(m);
+	mirror(m);
 	return (error);
 }
